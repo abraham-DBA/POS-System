@@ -6,8 +6,8 @@
       "item": "House"
     },
     {
-      "name": "Shop",
-      "href": "/shop",
+      "name": "Products",
+      "href": "/products",
       "item": "ShoppingBag"
     },
     {
@@ -166,6 +166,62 @@
       "Retention": 1890,
       "Revenue": 2200,
       "Profit": 4800
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 15 Pro",
+      "category": "Smartphones",
+      "price": 999,
+      "stock": 150,
+      "status": "In Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S24",
+      "category": "Smartphones",
+      "price": 899,
+      "stock": 120,
+      "status": "In Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "Google Pixel 8",
+      "category": "Smartphones",
+      "price": 799,
+      "stock": 89,
+      "status": "In Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "OnePlus 12",
+      "category": "Smartphones",
+      "price": 649,
+      "stock": 45,
+      "status": "Low Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "iPhone 14",
+      "category": "Smartphones",
+      "price": 799,
+      "stock": 200,
+      "status": "In Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 6,
+      "name": "Xiaomi 14 Ultra",
+      "category": "Smartphones",
+      "price": 749,
+      "stock": 0,
+      "status": "Out of Stock",
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
     }
   ]
 }
