@@ -135,5 +135,37 @@
       "name": "Delivered",
       "value": 3908
     }
+  ],
+  "productPerformance": [
+    {
+      "name": "iPhone 13",
+      "Retention": 4000,
+      "Revenue": 3200,
+      "Profit": 2400
+    },
+    {
+      "name": "iPhone 14",
+      "Retention": 3000,
+      "Revenue": 2800,
+      "Profit": 1398
+    },
+    {
+      "name": "iPhone 15",
+      "Retention": 2000,
+      "Revenue": 1900,
+      "Profit": 9800
+    },
+    {
+      "name": "Samsung S23",
+      "Retention": 2780,
+      "Revenue": 2500,
+      "Profit": 3908
+    },
+    {
+      "name": "Pixel 8",
+      "Retention": 1890,
+      "Revenue": 2200,
+      "Profit": 4800
+    }
   ]
 }
