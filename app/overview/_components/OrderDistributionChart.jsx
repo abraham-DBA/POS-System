@@ -3,25 +3,30 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useTheme } from '../../providers/ThemeProvider';
 
 const COLORS = ["#fbc02d", "#03a9f4", "#ef4444", "#8bc34a"]
 
 const OrderDistributionChart = () => {
     const [orderStatusData, setOrderStatusData] = useState([]);
+    const { theme } = useTheme();
 
     useEffect(() => {
         fetch('data/data.json')
             .then((res) => res.json())
             .then((data) => setOrderStatusData(data.orderStatus))
     }, [])
+
+    const isDark = theme === 'dark';
+
     return (
         <motion.div
-            className='bg-[#1e1e1e] backdrop-blur-md shadow-lg rounded-xl p-4 md:p-6 border border-[#1f1f1f1] mx-2 md:mx-0 w-full'
+            className={`${isDark ? 'bg-[#1e1e1e] border-[#1f1f1f]' : 'bg-white border-gray-200'} backdrop-blur-md shadow-lg rounded-xl p-4 md:p-6 border mx-2 md:mx-0 w-full`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
         >
-            <h2 className='text-base md:text-lg font-semibold mb-4 text-gray-100 text-center md:text-left'>
+            <h2 className={`text-base md:text-lg font-semibold mb-4 ${isDark ? 'text-gray-100' : 'text-gray-900'} text-center md:text-left`}>
                 Order Status Distribution
             </h2>
 

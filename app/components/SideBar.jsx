@@ -30,8 +30,8 @@ const SideBar = () => {
     return (
         <div className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 
         ${isSideBarOpen ? 'w-64' : 'w-20'}`}>
-            <div className='h-full bg-[#1a1a1a] backdrop-blur-md p-4 flex flex-col border-r border-[#2f2f2f]'>
-                <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className='p-2 rounded-full hover:bg-[#2f2f2f] transition-colors max-w-fit cursor-pointer'>
+            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md p-4 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
+                <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className='p-2 rounded-full dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors max-w-fit cursor-pointer'>
                     <Menu size={24} />
                 </button>
                 <nav className='mt-8 flex-grow'>
@@ -39,8 +39,8 @@ const SideBar = () => {
                         const IconComponent = ICONS[item.item]
                         return (
                             <Link key={item.name} href={item.href}>
-                                <div className={`flex items-center p-4 text-sm font-medium rounded-lg hover:bg-[#2f2f2f] transition-colors mb-2 
-                                ${pathname === item.href ? "bg-[#2f2f2f]" : ""}`}>
+                                <div className={`flex items-center p-4 text-sm font-medium rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors mb-2 
+                                ${pathname === item.href ? "dark:bg-[#2f2f2f] bg-gray-100" : ""}`}>
                                     <IconComponent size={20} style={{minWidth: "20px"}} />
                                     {isSideBarOpen &&(
                                         <span className='ml-4 whitespace-nowrap'>{item.name}</span>

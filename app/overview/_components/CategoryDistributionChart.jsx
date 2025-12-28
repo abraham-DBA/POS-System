@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useTheme } from '../../providers/ThemeProvider';
 
 const COLORS = ["#FF6B6B", "#4D96FF", "#FFD166", "#06D6A0", "#A29BFE"]
 
 const CategoryDistributionChart = () => {
     const [categoryData, setCategoryData] = useState([]);
     const [isSmallOrMediumScreen, setIsSmallOrMediumScreen] = useState(false);
+    const { theme } = useTheme();
 
     useEffect(() => {
         fetch('data/data.json')
@@ -26,15 +28,16 @@ const CategoryDistributionChart = () => {
     }, [])
 
     const outerRadius = isSmallOrMediumScreen ? 60 : 80
+    const isDark = theme === 'dark';
 
     return (
         <motion.div
-            className='bg-[#1e1e1e] backdrop-blur-md shadow-lg rounded-xl p-4 md:p-6 border border-[#1f1f1f1] mx-2 md:mx-0 w-full'
+            className={`${isDark ? 'bg-[#1e1e1e] border-[#1f1f1f]' : 'bg-white border-gray-200'} backdrop-blur-md shadow-lg rounded-xl p-4 md:p-6 border mx-2 md:mx-0 w-full`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
         >
-            <h2 className='text-base md:text-lg font-medium mb-4 text-gray-100 text-center md:text-left'>
+            <h2 className={`text-base md:text-lg font-medium mb-4 ${isDark ? 'text-gray-100' : 'text-gray-900'} text-center md:text-left`}>
                 Category Distribution
             </h2>
             <div className='w-full h-64 md:h-80' style={{ minWidth: 0 }}>
