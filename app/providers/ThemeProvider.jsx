@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useLayoutEffect, useState } from 'react'
+import React, { createContext, useContext, useLayoutEffect, useRef, useState } from 'react'
 
 const ThemeContext = createContext()
 

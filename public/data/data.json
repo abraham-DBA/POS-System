@@ -11,9 +11,24 @@
       "item": "ShoppingBag"
     },
     {
-      "name": "Cart",
-      "href": "/cart",
-      "item": "ShoppingCart"
+      "name": "Clients",
+      "href": "/clients",
+      "item": "Users"
+    },
+    {
+      "name": "Sales",
+      "href": "/sales",
+      "item": "DollarSign"
+    },
+    {
+      "name": "Orders",
+      "href": "/orders",
+      "item": "ShoppingBag"
+    },
+    {
+      "name": "Settings",
+      "href": "/settings",
+      "item": "Settings"
     },
     {
       "name": "Messages",
@@ -21,24 +36,9 @@
       "item": "Mail"
     },
     {
-      "name": "Users",
-      "href": "/users",
-      "item": "Users"
-    },
-    {
-      "name": "Earnings",
-      "href": "/earnings",
-      "item": "DollarSign"
-    },
-    {
       "name": "Notifications",
       "href": "/notifications",
       "item": "Bell"
-    },
-    {
-      "name": "Settings",
-      "href": "/settings",
-      "item": "Settings"
     },
     {
       "name": "Help",
@@ -222,6 +222,57 @@
       "stock": 0,
       "status": "Out of Stock",
       "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+    }
+  ],
+  
+  "clients": [
+    {
+      "id": 1,
+      "name": "John Kabuye",
+      "email": "john.kabuye@email.com",
+      "phone": "+256 701 234567",
+      "country": "Uganda",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Nakawulo",
+      "email": "sarah.nakawulo@email.com",
+      "phone": "+256 702 345678",
+      "country": "Uganda",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "David Okello",
+      "email": "david.okello@email.com",
+      "phone": "+256 703 456789",
+      "country": "Kenya",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "Grace Achieng",
+      "email": "grace.achieng@email.com",
+      "phone": "+254 712 567890",
+      "country": "Kenya",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "Michael Nyambura",
+      "email": "michael.nyambura@email.com",
+      "phone": "+256 704 678901",
+      "country": "Uganda",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 6,
+      "name": "Emily Mwangi",
+      "email": "emily.mwangi@email.com",
+      "phone": "+254 713 789012",
+      "country": "Tanzania",
+      "avatar": "https://images.unsplash.com/photo-1534126613592-e0b5ad30e3e4?w=200&h=200&fit=crop"
     }
   ]
 }
