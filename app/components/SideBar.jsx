@@ -33,9 +33,9 @@ const SideBar = () => {
             .then((data) => setSideBarItems(data.sideBarItems));
     }, [])
     return (
-        <div className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 
+        <div className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 hidden md:block
         ${isSideBarOpen ? 'w-64' : 'w-20'}`}>
-            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md px-3 py-4 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
+            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md px-2 sm:px-3 py-4 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
                 <div className='flex items-center justify-between gap-2 mb-8'>
                     {isSideBarOpen && (
                         <h1 className='text-lg font-bold dark:text-white text-gray-900'>Hardware World</h1>

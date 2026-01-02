@@ -37,9 +37,9 @@ const OverviewPage = () => {
 
     return (
         <div className='relative z-10'>
-            <div className='max-w-7xl mx-auto'>
+            <div className='w-full'>
                 <motion.div
-                    className='grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8'
+                    className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8'
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
@@ -51,7 +51,7 @@ const OverviewPage = () => {
                 </motion.div>
 
                 <motion.div 
-                    className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8'
+                    className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8'
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 1 }}
@@ -64,7 +64,7 @@ const OverviewPage = () => {
 
                 {/* Recent Orders & Low Stock Section */}
                 <motion.div 
-                    className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8'
+                    className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8'
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 1 }}
@@ -108,7 +108,7 @@ const OverviewPage = () => {
                     </div>
                 </motion.div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
                     <SalesOverViewChart />
                     <CategoryDistributionChart />
                     <OrderDistributionChart />
