@@ -34,20 +34,25 @@ const SideBar = () => {
     }, [])
     return (
         <div className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 
-        ${isSideBarOpen ? 'w-80' : 'w-20'}`}>
-            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md p-2 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
-                <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className='p-2 rounded-full dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors max-w-fit cursor-pointer'>
-                    <Menu size={24} />
-                </button>
-                <nav className='mt-3 flex-grow'>
+        ${isSideBarOpen ? 'w-64' : 'w-20'}`}>
+            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md px-3 py-4 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
+                <div className='flex items-center justify-between gap-2 mb-8'>
+                    {isSideBarOpen && (
+                        <h1 className='text-lg font-bold dark:text-white text-gray-900'>Hardware World</h1>
+                    )}
+                    <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className='p-2.5 rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors cursor-pointer'>
+                        <Menu size={22} />
+                    </button>
+                </div>
+                <nav className='flex-grow space-y-1'>
                     {sideBarItems.map((item) => {
                         const IconComponent = ICONS[item.item]
                         if (!IconComponent) return null
                         return (
                             <Link key={item.name} href={item.href}>
-                                <div className={`flex items-center p-2.5 text-xs font-medium rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors mb-1 
+                                <div className={`flex items-center px-3.5 py-3 text-sm font-medium rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors
                                 ${pathname === item.href ? "dark:bg-[#2f2f2f] bg-gray-100" : ""}`}>
-                                    <IconComponent size={18} style={{minWidth: "18px"}} />
+                                    <IconComponent size={20} style={{minWidth: "20px"}} />
                                     {isSideBarOpen &&(
                                         <span className='ml-3 whitespace-nowrap'>{item.name}</span>
                                         )}

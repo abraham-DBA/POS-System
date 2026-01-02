@@ -1,12 +1,14 @@
 'use client'
 
-import { Bell, Moon, Sun } from 'lucide-react'
+import { Bell, Moon, Sun, LogOut } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { useTheme } from '../providers/ThemeProvider'
+import { UserButton } from '@clerk/nextjs'
 
 const Header = () => {
     const { theme, toggleTheme, mounted } = useTheme()
+    const [showLogout, setShowLogout] = useState(false)
 
     if (!mounted) return null
 
@@ -35,6 +37,7 @@ const Header = () => {
                         alt='country flag'
                         width={25}
                         height={18}
+                        style={{ width: 'auto', height: 'auto' }}
                         className='rounded-full shadow-md cursor-pointer'
                     />
 
@@ -42,11 +45,15 @@ const Header = () => {
                         <Bell className='w-5 sm:w-6 sm:h-6 dark:text-gray-300 text-gray-600 cursor-pointer hover:dark:text-white hover:text-gray-900' />
                     </div>
 
-                    <div className='flex items-center space-x-2 sm:space-x-3'>
-                        <Image src="/profile.png" alt='admin' width={35} height={35} className='rounded-full dark:border-gray-600 border-gray-300 border' />
-                        <span className='hidden sm:block dark:text-gray-100 text-gray-900 font-medium'>
-                            Moko Sam
-                        </span>
+                    <div className='relative'>
+                        <UserButton 
+                            appearance={{
+                                elements: {
+                                    avatarBox: 'w-9 h-9 sm:w-10 sm:h-10'
+                                }
+                            }}
+                            userProfileMode="modal"
+                        />
                     </div>
 
                 </div>
