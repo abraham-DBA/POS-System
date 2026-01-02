@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from "framer-motion";
-import { Edit, Search, Trash2 } from 'lucide-react';
+import { Edit, Search, Trash2, X } from 'lucide-react';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Image from 'next/image';
 import { useTheme } from '../../providers/ThemeProvider';
@@ -10,13 +10,22 @@ import { useTheme } from '../../providers/ThemeProvider';
 const ProductsTable = () => {
 
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [suppliers, setSuppliers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [editingProduct, setEditingProduct] = useState(null);
+    const [formData, setFormData] = useState({ name: '', price: 0, cost: 0, stock: 0, minStock: 0, category: '', supplier: '' });
     const { theme } = useTheme();
 
     useEffect(() => {
         fetch('data/data.json')
             .then((res) => res.json())
-            .then((data) => setProducts(data.products || []))
+            .then((data) => {
+                setProducts(data.products || []);
+                setCategories(data.categories || []);
+                setSuppliers(data.suppliers || []);
+            })
     }, [])
 
     const filteredProducts = products.filter((product) =>
@@ -26,6 +35,44 @@ const ProductsTable = () => {
     );
 
     const isDark = theme === 'dark';
+
+    const handleEditClick = (product) => {
+        setEditingProduct(product);
+        setFormData({
+            name: product.name,
+            price: product.price,
+            cost: product.cost,
+            stock: product.stock,
+            minStock: product.minStock,
+            category: product.category,
+            supplier: product.supplier
+        });
+        setIsDialogOpen(true);
+    };
+
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: name === 'name' || name === 'category' || name === 'supplier' ? value : parseInt(value) || 0
+        }));
+    };
+
+    const handleSaveEdit = () => {
+        const updatedProducts = products.map(product =>
+            product.id === editingProduct.id
+                ? { ...product, ...formData }
+                : product
+        );
+        setProducts(updatedProducts);
+        setIsDialogOpen(false);
+        setEditingProduct(null);
+    };
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+        setEditingProduct(null);
+    };
 
     return (
         <motion.div
@@ -99,7 +146,7 @@ const ProductsTable = () => {
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <div className='flex justify-end gap-2'>
-                                        <button className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
+                                        <button onClick={() => handleEditClick(product)} className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
                                             <Edit size={16} className={isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'} />
                                         </button>
                                         <button className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
@@ -119,6 +166,147 @@ const ProductsTable = () => {
                     </TableBody>
                 </Table>
             </div>
+
+            {/* Edit Dialog */}
+            {isDialogOpen && (
+                <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+                    <motion.div
+                        className={`${isDark ? 'bg-[#1e1e1e]' : 'bg-white'} rounded-lg shadow-lg p-8 w-full max-w-3xl h-full max-h-[95vh] overflow-y-auto`}
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.95, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <div className='flex justify-between items-center mb-8'>
+                            <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                Edit Product
+                            </h3>
+                            <button
+                                onClick={handleCloseDialog}
+                                className={`p-2 rounded transition ${isDark ? 'hover:bg-[#2a2a2a]' : 'hover:bg-gray-100'}`}
+                            >
+                                <X size={24} className={isDark ? 'text-gray-400' : 'text-gray-600'} />
+                            </button>
+                        </div>
+
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Product Name
+                                </label>
+                                <input
+                                    type='text'
+                                    name='name'
+                                    value={formData.name}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                />
+                            </div>
+
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Category
+                                </label>
+                                <select
+                                    name='category'
+                                    value={formData.category}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white' : 'bg-gray-50 border-gray-300 text-gray-900'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                >
+                                    <option value=''>Select a category</option>
+                                    {categories.map(cat => (
+                                        <option key={cat.id} value={cat.name}>{cat.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Price
+                                </label>
+                                <input
+                                    type='number'
+                                    name='price'
+                                    value={formData.price}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                />
+                            </div>
+
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Cost
+                                </label>
+                                <input
+                                    type='number'
+                                    name='cost'
+                                    value={formData.cost}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                />
+                            </div>
+
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Stock
+                                </label>
+                                <input
+                                    type='number'
+                                    name='stock'
+                                    value={formData.stock}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                />
+                            </div>
+
+                            <div>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Min Stock
+                                </label>
+                                <input
+                                    type='number'
+                                    name='minStock'
+                                    value={formData.minStock}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                />
+                            </div>
+
+                            <div className='md:col-span-2'>
+                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    Supplier
+                                </label>
+                                <select
+                                    name='supplier'
+                                    value={formData.supplier}
+                                    onChange={handleFormChange}
+                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white' : 'bg-gray-50 border-gray-300 text-gray-900'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
+                                >
+                                    <option value=''>Select a supplier</option>
+                                    {suppliers.map(sup => (
+                                        <option key={sup.id} value={sup.name}>{sup.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className='flex gap-4 mt-8'>
+                            <button
+                                onClick={handleCloseDialog}
+                                className={`flex-1 px-6 py-3 rounded-lg font-medium text-base transition ${isDark ? 'bg-[#2a2a2a] text-gray-300 hover:bg-[#3a3a3a]' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSaveEdit}
+                                className='flex-1 px-6 py-3 rounded-lg font-medium text-base text-white bg-blue-600 hover:bg-blue-700 transition'
+                            >
+                                Save Changes
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
         </motion.div>
     )
 }

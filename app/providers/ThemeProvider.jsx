@@ -10,8 +10,8 @@ function getInitialTheme() {
 }
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState(getInitialTheme)
-    const mounted = true
+    const [theme, setTheme] = useState('dark')
+    const [mounted, setMounted] = useState(false)
 
     function applyTheme(newTheme) {
         if (newTheme === 'light') {
@@ -20,6 +20,13 @@ export function ThemeProvider({ children }) {
             document.documentElement.classList.add('dark')
         }
     }
+
+    useLayoutEffect(() => {
+        const savedTheme = localStorage.getItem('theme') || 'dark'
+        setTheme(savedTheme)
+        applyTheme(savedTheme)
+        setMounted(true)
+    }, [])
 
     useLayoutEffect(() => {
         applyTheme(theme)

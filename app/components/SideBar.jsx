@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, DollarSign, House, Info, Mail, Menu, Settings, ShoppingBag, ShoppingCart, Users } from 'lucide-react'
+import { Bell, DollarSign, House, Info, Mail, Menu, Settings, ShoppingBag, ShoppingCart, Users, Truck, FileText, BarChart3, TrendingDown, Layers } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -14,7 +14,12 @@ const ICONS = {
     Mail,
     Users,
     Bell,
-    Info
+    Info,
+    Truck,
+    FileText,
+    BarChart3,
+    TrendingDown,
+    Layers
 }
 
 const SideBar = () => {
@@ -29,21 +34,22 @@ const SideBar = () => {
     }, [])
     return (
         <div className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 
-        ${isSideBarOpen ? 'w-64' : 'w-20'}`}>
-            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md p-4 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
+        ${isSideBarOpen ? 'w-80' : 'w-20'}`}>
+            <div className='h-full dark:bg-[#1a1a1a] bg-white dark:backdrop-blur-md p-2 flex flex-col dark:border-[#2f2f2f] border-gray-200 border-r'>
                 <button onClick={() => setIsSideBarOpen(!isSideBarOpen)} className='p-2 rounded-full dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors max-w-fit cursor-pointer'>
                     <Menu size={24} />
                 </button>
-                <nav className='mt-8 flex-grow'>
+                <nav className='mt-3 flex-grow'>
                     {sideBarItems.map((item) => {
                         const IconComponent = ICONS[item.item]
+                        if (!IconComponent) return null
                         return (
                             <Link key={item.name} href={item.href}>
-                                <div className={`flex items-center p-4 text-sm font-medium rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors mb-2 
+                                <div className={`flex items-center p-2.5 text-xs font-medium rounded-lg dark:hover:bg-[#2f2f2f] hover:bg-gray-100 transition-colors mb-1 
                                 ${pathname === item.href ? "dark:bg-[#2f2f2f] bg-gray-100" : ""}`}>
-                                    <IconComponent size={20} style={{minWidth: "20px"}} />
+                                    <IconComponent size={18} style={{minWidth: "18px"}} />
                                     {isSideBarOpen &&(
-                                        <span className='ml-4 whitespace-nowrap'>{item.name}</span>
+                                        <span className='ml-3 whitespace-nowrap'>{item.name}</span>
                                         )}
                                 </div>
                             </Link>

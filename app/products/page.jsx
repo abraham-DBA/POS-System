@@ -19,7 +19,7 @@ const ProductsPage = () => {
                     <StartsCard name="Total Products" icon={ShoppingBag} value={"4,532"} />
                     <StartsCard name="Total Stock" icon={SquareActivity} value={"18,450"} />
                     <StartsCard name="Total Sold" icon={DollarSign} value={"10,600"} />
-                    <StartsCard name="Total Categories" icon={ChartBarStackedIcon} value={"8"} />
+                    <StartsCard name="Low Stock" icon={ChartBarStackedIcon} value={"8"} />
 
                 </motion.div>
 

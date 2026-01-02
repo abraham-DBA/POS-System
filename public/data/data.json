@@ -11,9 +11,29 @@
       "item": "ShoppingBag"
     },
     {
+      "name": "Categories",
+      "href": "/categories",
+      "item": "Layers"
+    },
+    {
       "name": "Clients",
       "href": "/clients",
       "item": "Users"
+    },
+    {
+      "name": "Debtors",
+      "href": "/debtors",
+      "item": "Users"
+    },
+    {
+      "name": "Suppliers",
+      "href": "/suppliers",
+      "item": "Truck"
+    },
+    {
+      "name": "Invoices",
+      "href": "/invoices",
+      "item": "FileText"
     },
     {
       "name": "Sales",
@@ -21,29 +41,19 @@
       "item": "DollarSign"
     },
     {
-      "name": "Orders",
-      "href": "/orders",
-      "item": "ShoppingBag"
+      "name": "Expenses",
+      "href": "/expenses",
+      "item": "TrendingDown"
+    },
+    {
+      "name": "Reports",
+      "href": "/reports",
+      "item": "BarChart3"
     },
     {
       "name": "Settings",
       "href": "/settings",
       "item": "Settings"
-    },
-    {
-      "name": "Messages",
-      "href": "/messages",
-      "item": "Mail"
-    },
-    {
-      "name": "Notifications",
-      "href": "/notifications",
-      "item": "Bell"
-    },
-    {
-      "name": "Help",
-      "href": "/help",
-      "item": "Info"
     }
   ],
   "sales": [
@@ -174,54 +184,101 @@
       "name": "iPhone 15 Pro",
       "category": "Smartphones",
       "price": 999,
+      "cost": 650,
       "stock": 150,
+      "minStock": 20,
       "status": "In Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "Apple Inc",
+      "lastRestocked": "2024-12-15"
     },
     {
       "id": 2,
       "name": "Samsung Galaxy S24",
       "category": "Smartphones",
       "price": 899,
+      "cost": 580,
       "stock": 120,
+      "minStock": 15,
       "status": "In Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "Samsung Electronics",
+      "lastRestocked": "2024-12-10"
     },
     {
       "id": 3,
       "name": "Google Pixel 8",
       "category": "Smartphones",
       "price": 799,
+      "cost": 520,
       "stock": 89,
+      "minStock": 10,
       "status": "In Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "Google Store",
+      "lastRestocked": "2024-12-12"
     },
     {
       "id": 4,
       "name": "OnePlus 12",
       "category": "Smartphones",
       "price": 649,
-      "stock": 45,
+      "cost": 420,
+      "stock": 5,
+      "minStock": 15,
       "status": "Low Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "OnePlus",
+      "lastRestocked": "2024-11-20"
     },
     {
       "id": 5,
       "name": "iPhone 14",
       "category": "Smartphones",
       "price": 799,
+      "cost": 520,
       "stock": 200,
+      "minStock": 25,
       "status": "In Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "Apple Inc",
+      "lastRestocked": "2024-12-18"
     },
     {
       "id": 6,
       "name": "Xiaomi 14 Ultra",
       "category": "Smartphones",
       "price": 749,
+      "cost": 490,
       "stock": 0,
+      "minStock": 20,
       "status": "Out of Stock",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop"
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&h=200&fit=crop",
+      "supplier": "Xiaomi",
+      "lastRestocked": "2024-11-05"
+    }
+  ],
+
+  "categories": [
+    {
+      "id": 1,
+      "name": "Smartphones",
+      "description": "Mobile phones and smartphones"
+    },
+    {
+      "id": 2,
+      "name": "Tablets",
+      "description": "Tablet devices and iPad variants"
+    },
+    {
+      "id": 3,
+      "name": "Accessories",
+      "description": "Phone cases, screen protectors, and chargers"
+    },
+    {
+      "id": 4,
+      "name": "Wearables",
+      "description": "Smartwatches and fitness trackers"
     }
   ],
   
@@ -232,7 +289,10 @@
       "email": "john.kabuye@email.com",
       "phone": "+256 701 234567",
       "country": "Uganda",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+      "totalPurchases": 5997,
+      "purchaseCount": 6,
+      "lastPurchase": "2024-12-24"
     },
     {
       "id": 2,
@@ -240,7 +300,10 @@
       "email": "sarah.nakawulo@email.com",
       "phone": "+256 702 345678",
       "country": "Uganda",
-      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+      "totalPurchases": 3696,
+      "purchaseCount": 4,
+      "lastPurchase": "2024-12-21"
     },
     {
       "id": 3,
@@ -248,7 +311,10 @@
       "email": "david.okello@email.com",
       "phone": "+256 703 456789",
       "country": "Kenya",
-      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
+      "totalPurchases": 2398,
+      "purchaseCount": 3,
+      "lastPurchase": "2024-12-21"
     },
     {
       "id": 4,
@@ -256,7 +322,10 @@
       "email": "grace.achieng@email.com",
       "phone": "+254 712 567890",
       "country": "Kenya",
-      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
+      "totalPurchases": 1598,
+      "purchaseCount": 2,
+      "lastPurchase": "2024-12-22"
     },
     {
       "id": 5,
@@ -264,7 +333,10 @@
       "email": "michael.nyambura@email.com",
       "phone": "+256 704 678901",
       "country": "Uganda",
-      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+      "totalPurchases": 1947,
+      "purchaseCount": 1,
+      "lastPurchase": "2024-12-22"
     },
     {
       "id": 6,
@@ -272,7 +344,511 @@
       "email": "emily.mwangi@email.com",
       "phone": "+254 713 789012",
       "country": "Tanzania",
+      "avatar": "https://images.unsplash.com/photo-1534126613592-e0b5ad30e3e4?w=200&h=200&fit=crop",
+      "totalPurchases": 749,
+      "purchaseCount": 1,
+      "lastPurchase": "2024-12-23"
+    }
+  ],
+
+  "suppliers": [
+    {
+      "id": 1,
+      "name": "Apple Inc",
+      "email": "supplier@apple.com",
+      "phone": "+1 408 996 1010",
+      "country": "USA",
+      "address": "1 Apple Park Way, Cupertino",
+      "contact": "John Smith",
+      "paymentTerms": "Net 30",
+      "totalOwed": 45000,
+      "paymentStatus": "Pending",
+      "lastOrder": "2024-12-15",
+      "products": ["iPhone 15 Pro", "iPhone 14"]
+    },
+    {
+      "id": 2,
+      "name": "Samsung Electronics",
+      "email": "b2b@samsung.com",
+      "phone": "+82 2 6930 6114",
+      "country": "South Korea",
+      "address": "Samsung Building, Seoul",
+      "contact": "Park Min",
+      "paymentTerms": "Net 45",
+      "totalOwed": 30000,
+      "paymentStatus": "Pending",
+      "lastOrder": "2024-12-10",
+      "products": ["Samsung Galaxy S24"]
+    },
+    {
+      "id": 3,
+      "name": "Google Store",
+      "email": "supplies@google.com",
+      "phone": "+1 650 253 0000",
+      "country": "USA",
+      "address": "1600 Amphitheatre Parkway, Mountain View",
+      "contact": "Sarah Johnson",
+      "paymentTerms": "Net 30",
+      "totalOwed": 15600,
+      "paymentStatus": "Paid",
+      "lastOrder": "2024-12-12",
+      "products": ["Google Pixel 8"]
+    },
+    {
+      "id": 4,
+      "name": "OnePlus",
+      "email": "business@oneplus.com",
+      "phone": "+86 10 5950 7000",
+      "country": "China",
+      "address": "OnePlus HQ, Beijing",
+      "contact": "Zhang Wei",
+      "paymentTerms": "Net 60",
+      "totalOwed": 8400,
+      "paymentStatus": "Pending",
+      "lastOrder": "2024-11-20",
+      "products": ["OnePlus 12"]
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi",
+      "email": "b2b@xiaomi.com",
+      "phone": "+86 10 8520 9200",
+      "country": "China",
+      "address": "Xiaomi Campus, Beijing",
+      "contact": "Li Chen",
+      "paymentTerms": "Net 45",
+      "totalOwed": 0,
+      "paymentStatus": "Paid",
+      "lastOrder": "2024-11-05",
+      "products": ["Xiaomi 14 Ultra"]
+    }
+  ],
+  
+  "salesTransactions": [
+    {
+      "id": 1,
+      "orderId": 1001,
+      "customer": "John Kabuye",
+      "product": "iPhone 15 Pro",
+      "quantity": 1,
+      "unitPrice": 999,
+      "unitCost": 650,
+      "totalPrice": 999,
+      "totalCost": 650,
+      "profit": 349,
+      "paymentMethod": "Cash",
+      "date": "2024-12-20",
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "orderId": 1002,
+      "customer": "Sarah Nakawulo",
+      "product": "Samsung Galaxy S24",
+      "quantity": 2,
+      "unitPrice": 899,
+      "unitCost": 580,
+      "totalPrice": 1798,
+      "totalCost": 1160,
+      "profit": 638,
+      "paymentMethod": "Card",
+      "date": "2024-12-21",
+      "status": "Completed"
+    },
+    {
+      "id": 3,
+      "orderId": 1003,
+      "customer": "David Okello",
+      "product": "Google Pixel 8",
+      "quantity": 1,
+      "unitPrice": 799,
+      "unitCost": 520,
+      "totalPrice": 799,
+      "totalCost": 520,
+      "profit": 279,
+      "paymentMethod": "Cash",
+      "date": "2024-12-21",
+      "status": "Completed"
+    },
+    {
+      "id": 4,
+      "orderId": 1004,
+      "customer": "Grace Achieng",
+      "product": "iPhone 14",
+      "quantity": 1,
+      "unitPrice": 799,
+      "unitCost": 520,
+      "totalPrice": 799,
+      "totalCost": 520,
+      "profit": 279,
+      "paymentMethod": "Card",
+      "date": "2024-12-22",
+      "status": "Completed"
+    },
+    {
+      "id": 5,
+      "orderId": 1005,
+      "customer": "Michael Nyambura",
+      "product": "OnePlus 12",
+      "quantity": 3,
+      "unitPrice": 649,
+      "unitCost": 420,
+      "totalPrice": 1947,
+      "totalCost": 1260,
+      "profit": 687,
+      "paymentMethod": "Mobile Money",
+      "date": "2024-12-22",
+      "status": "Completed"
+    },
+    {
+      "id": 6,
+      "orderId": 1006,
+      "customer": "Emily Mwangi",
+      "product": "Xiaomi 14 Ultra",
+      "quantity": 1,
+      "unitPrice": 749,
+      "unitCost": 490,
+      "totalPrice": 749,
+      "totalCost": 490,
+      "profit": 259,
+      "paymentMethod": "Check",
+      "date": "2024-12-23",
+      "status": "Cancelled"
+    },
+    {
+      "id": 7,
+      "orderId": 1007,
+      "customer": "James Kipchoge",
+      "product": "iPhone 15 Pro",
+      "quantity": 1,
+      "unitPrice": 999,
+      "unitCost": 650,
+      "totalPrice": 999,
+      "totalCost": 650,
+      "profit": 349,
+      "paymentMethod": "Cash",
+      "date": "2024-12-23",
+      "status": "Completed"
+    },
+    {
+      "id": 8,
+      "orderId": 1008,
+      "customer": "Lucy Muthami",
+      "product": "Samsung Galaxy S24",
+      "quantity": 1,
+      "unitPrice": 899,
+      "unitCost": 580,
+      "totalPrice": 899,
+      "totalCost": 580,
+      "profit": 319,
+      "paymentMethod": "Card",
+      "date": "2024-12-24",
+      "status": "Pending"
+    }
+  ],
+
+  "debtors": [
+    {
+      "id": 1,
+      "name": "John Kabuye",
+      "email": "john.kabuye@email.com",
+      "phone": "+256 701 234567",
+      "amount": 4500,
+      "daysOverdue": 45,
+      "status": "Overdue",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Nakawulo",
+      "email": "sarah.nakawulo@email.com",
+      "phone": "+256 702 345678",
+      "amount": 8900,
+      "daysOverdue": 30,
+      "status": "Overdue",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "David Okello",
+      "email": "david.okello@email.com",
+      "phone": "+256 703 456789",
+      "amount": 2300,
+      "daysOverdue": 15,
+      "status": "Pending",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "Grace Achieng",
+      "email": "grace.achieng@email.com",
+      "phone": "+254 712 567890",
+      "amount": 12500,
+      "daysOverdue": 60,
+      "status": "Overdue",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "Michael Nyambura",
+      "email": "michael.nyambura@email.com",
+      "phone": "+256 704 678901",
+      "amount": 6700,
+      "daysOverdue": 20,
+      "status": "Pending",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 6,
+      "name": "Emily Mwangi",
+      "email": "emily.mwangi@email.com",
+      "phone": "+254 713 789012",
+      "amount": 5400,
+      "daysOverdue": 10,
+      "status": "Pending",
       "avatar": "https://images.unsplash.com/photo-1534126613592-e0b5ad30e3e4?w=200&h=200&fit=crop"
     }
-  ]
+  ],
+
+  "invoices": [
+    {
+      "id": 1,
+      "invoiceNumber": 2401,
+      "customer": "John Kabuye",
+      "customerId": 1,
+      "description": "iPhone 15 Pro Purchase",
+      "quantity": 1,
+      "unitPrice": 999,
+      "totalAmount": 999,
+      "date": "2024-12-20",
+      "dueDate": "2024-12-27",
+      "status": "Paid",
+      "paymentDate": "2024-12-21"
+    },
+    {
+      "id": 2,
+      "invoiceNumber": 2402,
+      "customer": "Sarah Nakawulo",
+      "customerId": 2,
+      "description": "Samsung Galaxy S24 (2 units)",
+      "quantity": 2,
+      "unitPrice": 899,
+      "totalAmount": 1798,
+      "date": "2024-12-21",
+      "dueDate": "2024-12-28",
+      "status": "Paid",
+      "paymentDate": "2024-12-22"
+    },
+    {
+      "id": 3,
+      "invoiceNumber": 2403,
+      "customer": "David Okello",
+      "customerId": 3,
+      "description": "Google Pixel 8 Purchase",
+      "quantity": 1,
+      "unitPrice": 799,
+      "totalAmount": 799,
+      "date": "2024-12-21",
+      "dueDate": "2024-12-28",
+      "status": "Paid",
+      "paymentDate": "2024-12-23"
+    },
+    {
+      "id": 4,
+      "invoiceNumber": 2404,
+      "customer": "Grace Achieng",
+      "customerId": 4,
+      "description": "iPhone 14 Purchase",
+      "quantity": 1,
+      "unitPrice": 799,
+      "totalAmount": 799,
+      "date": "2024-12-22",
+      "dueDate": "2024-12-29",
+      "status": "Paid",
+      "paymentDate": "2024-12-23"
+    },
+    {
+      "id": 5,
+      "invoiceNumber": 2405,
+      "customer": "Michael Nyambura",
+      "customerId": 5,
+      "description": "OnePlus 12 (3 units)",
+      "quantity": 3,
+      "unitPrice": 649,
+      "totalAmount": 1947,
+      "date": "2024-12-22",
+      "dueDate": "2024-12-29",
+      "status": "Pending",
+      "paymentDate": null
+    },
+    {
+      "id": 6,
+      "invoiceNumber": 2406,
+      "customer": "Emily Mwangi",
+      "customerId": 6,
+      "description": "Xiaomi 14 Ultra Purchase",
+      "quantity": 1,
+      "unitPrice": 749,
+      "totalAmount": 749,
+      "date": "2024-12-23",
+      "dueDate": "2024-12-30",
+      "status": "Pending",
+      "paymentDate": null
+    }
+  ],
+
+  "expenses": [
+    {
+      "id": 1,
+      "date": "2024-12-20",
+      "category": "Rent",
+      "description": "Monthly store rent",
+      "amount": 2000,
+      "paymentMethod": "Bank Transfer",
+      "status": "Paid",
+      "reference": "EXP-001"
+    },
+    {
+      "id": 2,
+      "date": "2024-12-20",
+      "category": "Utilities",
+      "description": "Electricity bill",
+      "amount": 500,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "reference": "EXP-002"
+    },
+    {
+      "id": 3,
+      "date": "2024-12-21",
+      "category": "Salaries",
+      "description": "Staff monthly salaries",
+      "amount": 3000,
+      "paymentMethod": "Bank Transfer",
+      "status": "Paid",
+      "reference": "EXP-003"
+    },
+    {
+      "id": 4,
+      "date": "2024-12-22",
+      "category": "Marketing",
+      "description": "Radio advertisement",
+      "amount": 800,
+      "paymentMethod": "Card",
+      "status": "Paid",
+      "reference": "EXP-004"
+    },
+    {
+      "id": 5,
+      "date": "2024-12-23",
+      "category": "Maintenance",
+      "description": "Store equipment maintenance",
+      "amount": 450,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "reference": "EXP-005"
+    },
+    {
+      "id": 6,
+      "date": "2024-12-24",
+      "category": "Transportation",
+      "description": "Delivery truck fuel",
+      "amount": 300,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "reference": "EXP-006"
+    }
+  ],
+
+  "businessMetrics": {
+    "dailyMetrics": [
+      {
+        "date": "2024-12-20",
+        "totalSales": 999,
+        "totalProfit": 349,
+        "totalCost": 650,
+        "transactions": 1,
+        "totalExpenses": 500
+      },
+      {
+        "date": "2024-12-21",
+        "totalSales": 2597,
+        "totalProfit": 917,
+        "totalCost": 1680,
+        "transactions": 2,
+        "totalExpenses": 800
+      },
+      {
+        "date": "2024-12-22",
+        "totalSales": 2746,
+        "totalProfit": 966,
+        "totalCost": 1780,
+        "transactions": 2,
+        "totalExpenses": 3450
+      },
+      {
+        "date": "2024-12-23",
+        "totalSales": 1748,
+        "totalProfit": 608,
+        "totalCost": 1140,
+        "transactions": 2,
+        "totalExpenses": 0
+      },
+      {
+        "date": "2024-12-24",
+        "totalSales": 899,
+        "totalProfit": 319,
+        "totalCost": 580,
+        "transactions": 1,
+        "totalExpenses": 300
+      }
+    ],
+    "monthlyMetrics": [
+      {
+        "month": "January",
+        "revenue": 45000,
+        "profit": 15000,
+        "costs": 30000,
+        "expenses": 5000,
+        "transactions": 120
+      },
+      {
+        "month": "February",
+        "revenue": 52000,
+        "profit": 18200,
+        "costs": 33800,
+        "expenses": 4500,
+        "transactions": 135
+      },
+      {
+        "month": "March",
+        "revenue": 48000,
+        "profit": 16800,
+        "costs": 31200,
+        "expenses": 4800,
+        "transactions": 128
+      }
+    ],
+    "inventoryMetrics": {
+      "totalValue": 189350,
+      "lowStockItems": 1,
+      "outOfStockItems": 1,
+      "totalItems": 6,
+      "turnoverRate": 2.8
+    },
+    "customerMetrics": {
+      "totalCustomers": 6,
+      "activeCustomers": 6,
+      "totalReceivedAmount": 8490,
+      "averageOrderValue": 1415,
+      "repeatCustomers": 2
+    },
+    "supplierMetrics": {
+      "totalSuppliers": 5,
+      "totalOwed": 99000,
+      "paidSuppliers": 2,
+      "pendingPayments": 3,
+      "averagePaymentTerms": "Net 41"
+    }
+  }
 }

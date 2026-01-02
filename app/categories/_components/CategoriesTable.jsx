@@ -1,42 +1,38 @@
-"use client"
+'use client'
 
 import React, { useState, useEffect } from 'react'
 import { motion } from "framer-motion";
 import { Edit, Search, Trash2, X } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import Image from 'next/image';
 import { useTheme } from '../../providers/ThemeProvider';
 
-const ClientsTable = () => {
+const CategoriesTable = () => {
 
-    const [clients, setClients] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [editingClient, setEditingClient] = useState(null);
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', country: '' });
+    const [editingCategory, setEditingCategory] = useState(null);
+    const [formData, setFormData] = useState({ name: '', description: '' });
     const { theme } = useTheme();
 
     useEffect(() => {
         fetch('data/data.json')
             .then((res) => res.json())
-            .then((data) => setClients(data.clients || []))
+            .then((data) => setCategories(data.categories || []))
     }, [])
 
-    const filteredClients = clients.filter((client) =>
-        client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        client.country.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredCategories = categories.filter((category) =>
+        category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        category.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const isDark = theme === 'dark';
 
-    const handleEditClick = (client) => {
-        setEditingClient(client);
+    const handleEditClick = (category) => {
+        setEditingCategory(category);
         setFormData({
-            name: client.name,
-            email: client.email,
-            phone: client.phone,
-            country: client.country
+            name: category.name,
+            description: category.description
         });
         setIsDialogOpen(true);
     };
@@ -50,19 +46,19 @@ const ClientsTable = () => {
     };
 
     const handleSaveEdit = () => {
-        const updatedClients = clients.map(client =>
-            client.id === editingClient.id
-                ? { ...client, ...formData }
-                : client
+        const updatedCategories = categories.map(category =>
+            category.id === editingCategory.id
+                ? { ...category, ...formData }
+                : category
         );
-        setClients(updatedClients);
+        setCategories(updatedCategories);
         setIsDialogOpen(false);
-        setEditingClient(null);
+        setEditingCategory(null);
     };
 
     const handleCloseDialog = () => {
         setIsDialogOpen(false);
-        setEditingClient(null);
+        setEditingCategory(null);
     };
 
     return (
@@ -74,13 +70,13 @@ const ClientsTable = () => {
         >
             <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4'>
                 <h2 className={`text-xl md:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    Clients
+                    Categories
                 </h2>
 
                 <div className={`relative w-full md:w-64`}>
                     <input
                         type='text'
-                        placeholder='search clients...'
+                        placeholder='search categories...'
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className={`${isDark ? 'bg-[#2f2f2f] text-white placeholder-gray-400' : 'bg-gray-100 text-gray-900 placeholder-gray-500'} rounded-lg pl-10 pr-4 py-2 w-full focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-500' : 'focus:ring-gray-400'} transition duration-200 text-sm`}
@@ -93,39 +89,24 @@ const ClientsTable = () => {
                 <Table>
                     <TableHeader className={`${isDark ? 'bg-[#2a2a2a] border-gray-700' : 'bg-gray-100 border-gray-300'} border-b`}>
                         <TableRow className='hover:bg-transparent'>
-                            <TableHead className={`w-[120px] sm:w-[150px] ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Name</TableHead>
-                            <TableHead className={`hidden sm:table-cell ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Email</TableHead>
-                            <TableHead className={`hidden md:table-cell ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Phone</TableHead>
-                            <TableHead className={`hidden lg:table-cell ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Country</TableHead>
+                            <TableHead className={`w-[150px] sm:w-[200px] ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Name</TableHead>
+                            <TableHead className={`${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Description</TableHead>
                             <TableHead className={`text-right ${isDark ? 'text-white' : 'text-gray-900'} font-bold text-sm md:text-base`}>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredClients.length > 0 ? (
-                            filteredClients.map((client) => (
-                                <TableRow key={client.id} className={`${isDark ? 'hover:bg-[#2a2a2a]' : 'hover:bg-gray-50'} transition duration-200`}>
+                        {filteredCategories.length > 0 ? (
+                            filteredCategories.map((category) => (
+                                <TableRow key={category.id} className={`${isDark ? 'hover:bg-[#2a2a2a]' : 'hover:bg-gray-50'} transition duration-200`}>
                                     <TableCell className="font-medium">
-                                        <div className='flex items-center gap-2'>
-                                            <Image
-                                                src={client.avatar}
-                                                alt={client.name}
-                                                width={36}
-                                                height={36}
-                                                className='w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover'
-                                            />
-                                            <div className='min-w-0'>
-                                                <div className={`text-xs sm:text-sm font-medium ${isDark ? 'text-gray-100' : 'text-gray-900'} truncate`}>
-                                                    {client.name}
-                                                </div>
-                                            </div>
+                                        <div className={`text-xs sm:text-sm font-medium ${isDark ? 'text-gray-100' : 'text-gray-900'} truncate`}>
+                                            {category.name}
                                         </div>
                                     </TableCell>
-                                    <TableCell className={`hidden sm:table-cell text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>{client.email}</TableCell>
-                                    <TableCell className={`hidden md:table-cell text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>{client.phone}</TableCell>
-                                    <TableCell className={`hidden lg:table-cell text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>{client.country}</TableCell>
+                                    <TableCell className={`text-xs sm:text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'} max-w-xs truncate`}>{category.description}</TableCell>
                                     <TableCell className="text-right">
                                         <div className='flex justify-end gap-2'>
-                                            <button onClick={() => handleEditClick(client)} className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
+                                            <button onClick={() => handleEditClick(category)} className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
                                                 <Edit size={16} className={isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'} />
                                             </button>
                                             <button className={`p-1 ${isDark ? 'hover:bg-[#3a3a3a]' : 'hover:bg-gray-200'} rounded transition`}>
@@ -138,7 +119,7 @@ const ClientsTable = () => {
                         ) : (
                             <TableRow>
                                 <TableCell colSpan="5" className={`text-center py-8 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                    No clients found
+                                    No categories found
                                 </TableCell>
                             </TableRow>
                         )}
@@ -158,7 +139,7 @@ const ClientsTable = () => {
                     >
                         <div className='flex justify-between items-center mb-8'>
                             <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                                Edit Client
+                                Edit Category
                             </h3>
                             <button
                                 onClick={handleCloseDialog}
@@ -168,10 +149,10 @@ const ClientsTable = () => {
                             </button>
                         </div>
 
-                        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                        <div className='grid grid-cols-1 gap-6'>
                             <div>
                                 <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                    Name
+                                    Category Name
                                 </label>
                                 <input
                                     type='text'
@@ -184,39 +165,13 @@ const ClientsTable = () => {
 
                             <div>
                                 <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                    Email
+                                    Description
                                 </label>
-                                <input
-                                    type='email'
-                                    name='email'
-                                    value={formData.email}
+                                <textarea
+                                    name='description'
+                                    value={formData.description}
                                     onChange={handleFormChange}
-                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
-                                />
-                            </div>
-
-                            <div>
-                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                    Phone
-                                </label>
-                                <input
-                                    type='text'
-                                    name='phone'
-                                    value={formData.phone}
-                                    onChange={handleFormChange}
-                                    className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
-                                />
-                            </div>
-
-                            <div>
-                                <label className={`block text-sm font-medium mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                                    Country
-                                </label>
-                                <input
-                                    type='text'
-                                    name='country'
-                                    value={formData.country}
-                                    onChange={handleFormChange}
+                                    rows='4'
                                     className={`w-full px-4 py-3 rounded-lg border ${isDark ? 'bg-[#2f2f2f] border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'} focus:outline-none focus:ring-2 ${isDark ? 'focus:ring-gray-600' : 'focus:ring-gray-400'} transition text-base`}
                                 />
                             </div>
@@ -243,4 +198,4 @@ const ClientsTable = () => {
     )
 }
 
-export default ClientsTable
+export default CategoriesTable
